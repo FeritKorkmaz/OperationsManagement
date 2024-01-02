@@ -1,10 +1,7 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using WebApi.Application.MachineOperations.Commands.CreateMachine;
-using WebApi.Application.MachineOperations.Commands.DeleteMachine;
 using WebApi.Application.MachineOperations.Commands.UpdateMachine;
 using WebApi.Application.MachineOperations.Queries.GetMachine;
-using WebApi.Application.ProductionStageOperations.Commands.CreateProductionStage;
 using WebApi.DBOperations;
 
 namespace WebApi.Controllers
@@ -22,38 +19,27 @@ namespace WebApi.Controllers
             _mapper = mapper;
         }
         [HttpGet("incomplete")]
-        public ActionResult GetMachine()
+        public ActionResult GetIncompleteMachineQuery()
         {
             GetMachineQery query = new GetMachineQery(_dbContext, _mapper);
-            var result = query.Handle();
+            var result = query.Handle(isDone: false);
             return Ok (result);
         }
         [HttpGet("complete")]
-        public ActionResult GetMachineComplete()
+        public ActionResult GetMachineCompleteQuery()
         {
-            GetMachineCompleteQery query = new GetMachineCompleteQery(_dbContext, _mapper);
-            var result = query.Handle();
+            GetMachineQery query = new GetMachineQery(_dbContext, _mapper);
+            var result = query.Handle(isDone: true);
             return Ok (result);
         }
-        
-        [HttpPost]
-        public ActionResult CreateMachine([FromBody] CreateMachineModel model)
+        [HttpGet("machines/stage")]
+        public ActionResult GetMachinesByStage()
         {
-            CreateMachineCommand command = new CreateMachineCommand(_dbContext, _mapper);
-            command.Model = model;
-                    
-            command.Handle();                        
-            return Ok();
+            GetMachinesByStage query = new GetMachinesByStage(_dbContext, _mapper);
+            var result = query.Handle(stage_id: 1);
+            return Ok (result);
         }
-
-        [HttpDelete("{Id}")]
-        public ActionResult DeleteMachine(int Id)
-        {
-            DeleteMachineCommand command = new DeleteMachineCommand(_dbContext);
-            command.MachineId = Id;
-            command.Handle();
-            return Ok();
-        }
+       
 
         [HttpPut("{Id}")]
         public ActionResult UpdateMachine(int Id)

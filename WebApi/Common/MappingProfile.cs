@@ -1,5 +1,4 @@
 using AutoMapper;
-using WebApi.Application.MachineOperations.Commands.CreateMachine;
 using WebApi.Application.MachineOperations.Commands.UpdateMachine;
 using WebApi.Application.MachineOperations.Queries.GetMachine;
 using WebApi.Application.MachineOrderOperations.Commands.CreateMachineOrder;
@@ -16,14 +15,7 @@ namespace WebApi.Common
     {
         public MappingProfile()
         {
-            CreateMap<CreateMachineModel, Machine>()
-                .ForMember(dest => dest.ProductionStageId, opt => opt.MapFrom (src => 1));
-                
-
             CreateMap<Machine, MachineViewModel>()
-                .ForMember(dest => dest.ProductionStage, opt => opt.MapFrom(src => src.ProductionStage != null ? src.ProductionStage.Name : string.Empty));
-                
-            CreateMap<Machine, MachineCompleteViewModel>()
                 .ForMember(dest => dest.ProductionStage, opt => opt.MapFrom(src => src.ProductionStage != null ? src.ProductionStage.Name : string.Empty));
             CreateMap<Machine, MachineOrderDetailViewModel>()
                 .ForMember(dest => dest.ProductionStage, opt => opt.MapFrom(src => src.ProductionStage != null ? src.ProductionStage.Name : string.Empty));
