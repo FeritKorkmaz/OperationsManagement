@@ -1,0 +1,7 @@
+# Bin ve obj klasörleri
+bin/
+obj/
+# Visual Studio Code için dosyalar
+.vscode/
+# Uygulama Ayarları dosyası
+appsettings.json
