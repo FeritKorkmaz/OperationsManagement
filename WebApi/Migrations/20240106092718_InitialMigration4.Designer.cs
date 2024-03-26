@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using WebApi.DBOperations;
@@ -11,9 +12,11 @@ using WebApi.DBOperations;
 namespace WebApi.Migrations
 {
     [DbContext(typeof(OperationsManagmentDbContext))]
-    partial class OperationsManagmentDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240106092718_InitialMigration4")]
+    partial class InitialMigration4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -157,7 +160,6 @@ namespace WebApi.Migrations
             modelBuilder.Entity("WebApi.Entities.CustomUser", b =>
                 {
                     b.Property<string>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("text");
 
                     b.Property<int>("AccessFailedCount")

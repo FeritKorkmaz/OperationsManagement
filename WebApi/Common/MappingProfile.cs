@@ -7,6 +7,9 @@ using WebApi.Application.MachineOrderOperations.Queries.GetMachineOrder;
 using WebApi.Application.MachineOrderOperations.Queries.GetMachineOrderDetail;
 using WebApi.Application.ProductionStageOperations.Commands.CreateProductionStage;
 using WebApi.Application.ProductionStageOperations.Queries.GetProductionStage;
+using WebApi.Application.UserOperations.Commands.CreateUser;
+using WebApi.Application.UserOperations.Commands.UpdateUser;
+using WebApi.Application.UserOperations.Queries.GetUser;
 using WebApi.Entities;
 
 namespace WebApi.Common
@@ -46,6 +49,15 @@ namespace WebApi.Common
             CreateMap<CreateProductionStageModel, ProductionStage>();
             CreateMap<UpdateProductionStageModel, ProductionStage>();
             CreateMap<ProductionStage, ProductionStageViewModel>();
+
+            CreateMap< CustomUser, UserViewModel>()
+                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.UserName));
+            CreateMap<CreateUserModel, CustomUser>()
+                .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.Name))
+                .ForMember(dest => dest.PasswordHash, opt => opt.MapFrom(src => src.Password));
+            CreateMap<UpdateUserModel, CustomUser>()
+                .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.Name));                   
+
 
 
               

@@ -58,20 +58,18 @@ namespace WebApi.DBOperations
                             Name = "machine02-02",
                             ProductionStageId = 1,
                             MachineOrderId = 1
-
-
                         },
                         new Machine
                         {
                             Name = "machine03-03",
                             ProductionStageId = 1,
                             MachineOrderId = 1
-
                         }
                     );
                     context.SaveChanges(); 
                 }
-
+                
+           
            
 
             }

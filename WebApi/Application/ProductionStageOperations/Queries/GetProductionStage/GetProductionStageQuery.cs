@@ -15,8 +15,8 @@ namespace WebApi.Application.ProductionStageOperations.Queries.GetProductionStag
         }
         public List<ProductionStageViewModel> Handle()
         {
-            var machineOrder = _dbContext.productionstages.OrderBy(x => x.Id).ToList();
-            List<ProductionStageViewModel> vm = _mapper.Map<List<ProductionStageViewModel>>(machineOrder);
+            var productionStage = _dbContext.productionstages.OrderBy(x => x.Id).ToList();
+            List<ProductionStageViewModel> vm = _mapper.Map<List<ProductionStageViewModel>>(productionStage);
             return vm;
         }
     }

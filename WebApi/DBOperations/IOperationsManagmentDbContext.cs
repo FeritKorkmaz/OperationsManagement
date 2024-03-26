@@ -8,6 +8,9 @@ namespace WebApi.DBOperations
         DbSet<Machine> machines { get; set; }
         DbSet<ProductionStage> productionstages {get; set;}
         DbSet<MachineOrder> machineorders {get; set;}
+        DbSet<CustomUser> customUsers { get; set; }
+
+
 
         
 
@@ -18,4 +21,5 @@ namespace WebApi.DBOperations
 
        int SaveChanges();
    } 
+   
 }
